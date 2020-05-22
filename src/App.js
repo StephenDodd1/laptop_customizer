@@ -69,7 +69,7 @@ class App extends Component {
         <OptionsBox
               features={this.props.features}
               selected={this.state.selected}
-              onChange={this.updateFeature()}
+              onChange={this.updateFeature}
             />
           <section className="main__summary">
             <h2>Your cart</h2>

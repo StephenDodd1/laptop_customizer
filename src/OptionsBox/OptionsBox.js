@@ -23,7 +23,7 @@ class OptionsBox extends Component{
                     className="feature__option"
                     name={slugify(feature)}
                     checked={item.name === this.props.selected[feature].name}
-                    onChange={e => console.log(e.target.name, e.target.id)}
+                    onChange={e => this.props.updateFeature(e.target.name, e.target.id)}
                 />
                 <label htmlFor={itemHash} className="feature__label">
                     {item.name} ({USCurrencyFormat.format(item.cost)})
