@@ -4,7 +4,8 @@ import slugify from 'slugify';
 
 class OptionsBox extends Component{
 
-    
+
+
     render() {
         const USCurrencyFormat = new Intl.NumberFormat('en-US', {
             style: 'currency',
@@ -22,7 +23,7 @@ class OptionsBox extends Component{
                     className="feature__option"
                     name={slugify(feature)}
                     checked={item.name === this.props.selected[feature].name}
-                    onChange={e => this.updateFeature(feature, item)}
+                    onChange={e => this.props.updateFeature(e.target.value)}
                 />
                 <label htmlFor={itemHash} className="feature__label">
                     {item.name} ({USCurrencyFormat.format(item.cost)})
