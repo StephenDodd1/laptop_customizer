@@ -34,7 +34,7 @@ class App extends Component {
   };
 
   updateFeature = (feature, newValue) => {
-    const selected = Object.assign({}, this.props.selected);
+    const selected = Object.assign({}, this.state.selected);
     selected[feature] = newValue;
     this.setState({
       selected
@@ -42,10 +42,10 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state.selected)
     const summary = Object.keys(this.state.selected).map((feature, idx) => {
       const featureHash = feature + '-' + idx;
       const selectedOption = this.state.selected[feature];
+      if(selectedOption !== undefined){
       return (
         <div className="summary__option" key={featureHash}>
           <div className="summary__option__label">{feature} </div>
@@ -54,7 +54,7 @@ class App extends Component {
             {USCurrencyFormat.format(selectedOption.cost)}
           </div>
         </div>
-      );
+      )};
     });
 
     const total = Object.keys(this.state.selected).reduce(
@@ -69,7 +69,7 @@ class App extends Component {
         <OptionsBox
               features={this.props.features}
               selected={this.state.selected}
-              updateFeature={this.state.updateFeature}
+              onChange={this.updateFeature()}
             />
           <section className="main__summary">
             <h2>Your cart</h2>
