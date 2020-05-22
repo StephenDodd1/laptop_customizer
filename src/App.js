@@ -45,7 +45,6 @@ class App extends Component {
     const summary = Object.keys(this.state.selected).map((feature, idx) => {
       const featureHash = feature + '-' + idx;
       const selectedOption = this.state.selected[feature];
-      if(selectedOption !== undefined){
       return (
         <div className="summary__option" key={featureHash}>
           <div className="summary__option__label">{feature} </div>
@@ -54,7 +53,7 @@ class App extends Component {
             {USCurrencyFormat.format(selectedOption.cost)}
           </div>
         </div>
-      )};
+      );
     });
 
     const total = Object.keys(this.state.selected).reduce(
