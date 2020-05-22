@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import slugify from 'slugify';
 import './App.css';
 import Header from './Header/Header';
-import Main from './Main/Main';
+import OptionsBox from './OptionsBox/OptionsBox';
 
 const USCurrencyFormat = new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -97,8 +97,9 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Main 
+        <OptionsBox
               features={this.props.features}
+              selected={this.state.selected}
             />
 
       </div>
