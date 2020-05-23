@@ -3,7 +3,9 @@ import ComponentBox from '../ComponentBox/ComponentBox';
 import slugify from 'slugify';
 
 class OptionsBox extends Component{
-
+  static defaultProps = {
+    features:{}
+  }
 
 
     render() {
@@ -15,6 +17,7 @@ class OptionsBox extends Component{
         const featureHash = feature + '-' + idx;
         const options = this.props.features[feature].map(item => {
         const itemHash = slugify(JSON.stringify(item));
+  
         return (
             <div key={itemHash} className="feature__item">
                 <input
@@ -23,7 +26,7 @@ class OptionsBox extends Component{
                     className="feature__option"
                     name={slugify(feature)}
                     checked={item.name === this.props.selected[feature].name}
-                    onChange={e => this.props.onChange(e.target.name, e.target.id)}
+                    onChange={e => this.props.onChange(this.props.name, this.props.id)}
                 />
                 <label htmlFor={itemHash} className="feature__label">
                     {item.name} ({USCurrencyFormat.format(item.cost)})
