@@ -35,12 +35,13 @@ class App extends Component {
   };
 
   updateFeature = (feature, newValue) => {
-    console.log('ran');
+    
     const selectedItem = Object.assign({}, this.state.selected);
     selectedItem[feature] = newValue;
     this.setState({
       selectedItem
-    });
+    })
+    this.render()
   };
 
   componentDidMount() {
@@ -62,7 +63,7 @@ class App extends Component {
         <OptionsBox
               features={this.props.features}
               selected={this.state.selected}
-              onChange={this.updateFeature}
+              handleUpdate={(feature,newValue) => this.updateFeature(feature,newValue)}
             />
         <ComponentOptions 
                         features={this.props.features}
