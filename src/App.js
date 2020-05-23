@@ -39,7 +39,7 @@ class App extends Component {
     const selectedItem = Object.assign({}, this.state.selected);
     selectedItem[feature] = newValue;
     this.setState({
-      selectedItem
+      selected: selectedItem
     })
     console.log(selectedItem)
     this.render()
