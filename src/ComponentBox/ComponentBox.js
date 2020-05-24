@@ -1,22 +1,19 @@
 import React, {Component} from 'react';
-import ComponentOptions from '../ComponentOptions/ComponentOptions';
 
 class ComponentBox extends React.Component {
     render() {
-        const arr = [];
-        const listItem = this.props.listHead;
-        const comp=this.props.features;
-        console.log(comp[listItem[0].props.children].length)
-        for(let i = 0; i < 2; i++){
-        arr.push(comp[listItem[i].props.children].name, + ' (', + comp[listItem[i].props.children].cost)
-        }
+        const USCurrencyFormat = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD'
+          });
+          const total = Object.keys(this.props.selected).reduce(
+            (acc, curr) => acc + this.props.selected[curr].cost,
+            0
+          );
     return(
-        <ul>
-        <li>{arr}</li>
-        <ComponentOptions 
-            features={this.props.features} 
-        />
-        </ul>
+        <div className="summary__total__value">
+        {USCurrencyFormat.format(total)}
+      </div>
     )}
 }
 
