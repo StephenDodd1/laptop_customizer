@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import ComponentBox from '../ComponentBox/ComponentBox';
+import ItemOptions from '../ItemOptions/ItemOptions';
 import slugify from 'slugify';
 
 class OptionsBox extends Component{
@@ -18,19 +18,14 @@ class OptionsBox extends Component{
         const options = this.props.features[feature].map(item => {
         const itemHash = slugify(JSON.stringify(item));
         return (
-            <div key={itemHash} className="feature__item">
-                <input
-                    type="radio"
-                    id={itemHash}
-                    className="feature__option"
-                    name={slugify(feature)}
-                    checked={item.name === this.props.selected[feature].name}
-                    onChange={e => this.props.handleUpdate(feature, item)}
-                />
-                <label htmlFor={itemHash} className="feature__label">
-                    {item.name} ({USCurrencyFormat.format(item.cost)})
-                </label>
-            </div>
+<ItemOptions 
+  itemHash={itemHash}
+  feature={feature}
+  item={item}
+  selected={this.props.selected}
+  features={this.props.features}
+  handleUpdate={this.props.handleUpdate}
+  />
             );
         });
         return (
@@ -39,7 +34,7 @@ class OptionsBox extends Component{
                 <h3>{feature}</h3>
               </legend>
               {options}
-            </fieldset>
+            </fieldset>  
           );
         });
         return(
